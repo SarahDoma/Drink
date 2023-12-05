@@ -1,9 +1,10 @@
 package com.example.demo.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity(name="drink")
@@ -17,7 +18,7 @@ public class Drink {
         this.ingredientList = ingredientList;
     }
 
-    public Drink(String name, int capacity, String colour, String type, String company, int price, List<Ingredient> ingredientList, Long id) {
+    public Drink(String name, int capacity, String colour, String type, String company, int price, List<Ingredient> ingredientList, Long id, Date created_date, Date update_date) {
         this.name = name;
         this.capacity = capacity;
         this.colour = colour;
@@ -26,6 +27,8 @@ public class Drink {
         this.ingredientList = ingredientList;
         this.id = id;
         this.price = price;
+        this.created_date = created_date;
+        this.update_date = update_date;
     }
 
     private String name;
@@ -35,9 +38,16 @@ public class Drink {
     private String company;
     private int price;
 
+    @CreationTimestamp
+    private Date created_date;
+
+    @UpdateTimestamp
+    private Date update_date;
+
     @OneToMany
     private List<Ingredient> ingredientList;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     public String getName() {
