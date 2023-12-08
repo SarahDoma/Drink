@@ -5,8 +5,8 @@ import com.example.demo.services.DrinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class DrinkController {
@@ -27,9 +27,36 @@ public class DrinkController {
         return "new_drink";
     }
 
-    @GetMapping("/saveDrink")
+    @PostMapping("/saveDrink")
     public String saveDrink(@ModelAttribute("drink") Drink drink) {
         drinkService.saveDrink(drink);
+        return "redirect:/";
+    }
+
+    @GetMapping("/showUpdateForm/{id}")
+    public String showUpdateForm(@PathVariable(value = "id") long id, Model model){
+
+        Drink drink = drinkService.getDrinkById(id);
+        model.addAttribute("drink", drink);
+        return "update_drink";
+    }
+
+    @PostMapping("/updateDrink")
+    public String updateDrink(@ModelAttribute("drink") Drink drink, Model model){
+        try {
+            drinkService.saveDrink(drink);
+            model.addAttribute("message", "Drink updated successfully");
+        } catch (Exception e){
+            model.addAttribute("message", "Error updating drink: " + e.getMessage());
+            model.addAttribute("color", "danger");
+        }
+        return "redirect:/";
+    }
+
+    @GetMapping("/deleteDrink/{id}")
+    public String deleteStudent(@PathVariable long id){
+
+        this.drinkService.deleteDrinkById(id);
         return "redirect:/";
     }
 }

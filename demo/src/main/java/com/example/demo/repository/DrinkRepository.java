@@ -7,7 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface DrinkRepository extends JpaRepository<Drink, Long> {
-//    @Query("")
 //    List<Drink> findDrinkByPriceGreaterThan(int price);
-
 }

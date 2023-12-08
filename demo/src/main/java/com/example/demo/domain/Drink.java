@@ -10,27 +10,9 @@ import java.util.List;
 @Entity(name="drink")
 
 public class Drink {
-    public List<Ingredient> getIngredientList() {
-        return ingredientList;
-    }
-
-    public void setIngredientList(List<Ingredient> ingredientList) {
-        this.ingredientList = ingredientList;
-    }
-
-    public Drink(String name, int capacity, String colour, String type, String company, int price, List<Ingredient> ingredientList, Long id, Date created_date, Date update_date) {
-        this.name = name;
-        this.capacity = capacity;
-        this.colour = colour;
-        this.type = type;
-        this.company = company;
-        this.ingredientList = ingredientList;
-        this.id = id;
-        this.price = price;
-        this.created_date = created_date;
-        this.update_date = update_date;
-    }
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String name;
     private int capacity;
     private String colour;
@@ -44,11 +26,9 @@ public class Drink {
     @UpdateTimestamp
     private Date update_date;
 
-    @OneToMany
-    private List<Ingredient> ingredientList;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    public Drink() {
+
+    }
 
     public String getName() {
         return name;
@@ -94,10 +74,6 @@ public class Drink {
         this.price = price;
     }
 
-    public Drink() {
-
-    }
-
     public void setCompany(String company) {
         this.company = company;
     }
@@ -109,4 +85,28 @@ public class Drink {
     public Long getId() {
         return id;
     }
+
+    @OneToMany
+    private List<Ingredient> ingredientList;
+
+    public List<Ingredient> getIngredientList() {
+        return ingredientList;
+    }
+
+    public void setIngredientList(List<Ingredient> ingredientList) {
+        this.ingredientList = ingredientList;
+    }
+    public Drink(String name, int capacity, String colour, String type, String company, int price, List<Ingredient> ingredientList, Long id, Date created_date, Date update_date) {
+        this.name = name;
+        this.capacity = capacity;
+        this.colour = colour;
+        this.type = type;
+        this.company = company;
+        this.ingredientList = ingredientList;
+        this.id = id;
+        this.price = price;
+        this.created_date = created_date;
+        this.update_date = update_date;
+    }
+
 }

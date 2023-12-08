@@ -4,8 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity(name="ingredient")
-
 public class Ingredient {
+    @Id
+    private Long id;
+    private String name;
+    private String ingredient;
+
     public Ingredient() {
 
     }
@@ -32,10 +36,6 @@ public class Ingredient {
         this.ingredient = ingredient;
     }
 
-    @Id
-    private Long id;
-    private String name;
-    private String ingredient;
 
     public void setId(Long id) {
         this.id = id;

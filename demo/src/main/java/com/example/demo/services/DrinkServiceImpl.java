@@ -37,29 +37,29 @@ public class DrinkServiceImpl implements DrinkService{
     }
 
     @Override
-    public Drink updateDrink(Drink drink) {
-        Optional<Drink> optional = drinkRepository.findById(drink.getId());
+    public Drink updateDrinkById(Drink drink) {
+        Optional<Drink> optionalDrink = drinkRepository.findById(drink.getId());
 
-        if (optional.isPresent()) {
+        if (optionalDrink.isPresent()) {
         Drink updateDrink = new Drink();
-        updateDrink.setCapacity(updateDrink.getCapacity());
-        updateDrink.setColour(updateDrink.getColour());
-        updateDrink.setCompany(updateDrink.getCompany());
-        updateDrink.setName(updateDrink.getName());
-        updateDrink.setType(updateDrink.getType());
-        updateDrink.setId(updateDrink.getId());
-        updateDrink.setPrice(updateDrink.getPrice());
+        updateDrink.setCapacity(drink.getCapacity());
+        updateDrink.setColour(drink.getColour());
+        updateDrink.setCompany(drink.getCompany());
+        updateDrink.setName(drink.getName());
+        updateDrink.setType(drink.getType());
+        updateDrink.setId(drink.getId());
+        updateDrink.setPrice(drink.getPrice());
         updateDrink.setIngredientList(drink.getIngredientList());
 
         drinkRepository.save(updateDrink);
+            return updateDrink;
         }else {
             throw new RuntimeException("Drink does not exist");
         }
-        return drink;
     }
 
     @Override
-    public void deleteDrink(long id) {
+    public void deleteDrinkById(long id) {
     drinkRepository.deleteById(id);
     }
 }

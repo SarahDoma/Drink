@@ -1,0 +1,25 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/fragments :: head}"></head>
+
+<body>
+<div class="container">
+
+  <h1>Update Drink</h1>
+
+  <form th:action="@{/updateDrink}" th:method="post" th:object="${drink}" >
+    <input type="hidden" th:field="*{id}" />
+    <input type="text" th:field="*{name}" placeholder="Drink Name" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{price}" placeholder="Price" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{company}" placeholder="Company" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{type}" placeholder="Type" class="form-control mb-4 col-4">
+
+    <button type="submit" class="btn btn-info">Update Drink</button>
+  </form>
+
+  <a th:href="@{/}">Back to List</a>
+
+</div>
+</body>
+</html>

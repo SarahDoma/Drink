@@ -40,12 +40,12 @@ public class DrinkApiController {
 
     @PutMapping("/drink/{id}")
     public ResponseEntity<Drink> updateDrink(@PathVariable long id, @RequestBody Drink drink) {
-        return ResponseEntity.ok().body(drinkService.updateDrink(drink));
+        return ResponseEntity.ok().body(drinkService.updateDrinkById(drink));
     }
 
     @DeleteMapping("/drink/{id}")
     public HttpStatus deleteDrink(@PathVariable long id) {
-        drinkService.deleteDrink(id);
+        drinkService.deleteDrinkById(id);
         return HttpStatus.OK;
     }
 }

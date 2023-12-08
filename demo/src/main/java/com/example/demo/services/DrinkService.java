@@ -9,7 +9,7 @@ public interface DrinkService {
     Drink saveDrink(Drink drink);
     Drink getDrinkById(long id);
     List<Drink> getAllDrink();
-    Drink updateDrink(Drink drink);
-    void deleteDrink(long id);
+    Drink updateDrinkById(Drink drink);
+    void deleteDrinkById(long id);
 
 }
