@@ -54,7 +54,7 @@ public class DrinkController {
     }
 
     @GetMapping("/deleteDrink/{id}")
-    public String deleteStudent(@PathVariable long id){
+    public String deleteDrink(@PathVariable long id){
 
         this.drinkService.deleteDrinkById(id);
         return "redirect:/";
